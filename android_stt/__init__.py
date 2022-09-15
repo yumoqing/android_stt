@@ -8,6 +8,8 @@ request_permissions([Permission.RECORD_AUDIO])
 Bundle = autoclass('android.os.Bundle')
 RL = autoclass('android.speech.RecognitionListener')
 
+rl = RL()
+
 class RecognizerListenerBase(RL):
 	def __init__(self, driver):
 		super().__init__()
