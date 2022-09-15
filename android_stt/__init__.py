@@ -1,4 +1,4 @@
-mport time
+import time
 from jnius import autoclass
 import android
 from android.permissions import request_permissions, Permission
