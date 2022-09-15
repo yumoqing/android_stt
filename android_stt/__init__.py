@@ -6,20 +6,12 @@ from android.permissions import request_permissions, Permission
 request_permissions([Permission.RECORD_AUDIO])
 
 Bundle = autoclass('android.os.Bundle')
-RL = autoclass('android.speech.RecognitionListener')
+# RL = autoclass('android.speech.RecognitionListener')
 
-rl = RL()
+# rl = RL()
 
-class RecognizerListenerBase(RL):
-	def __init__(self, driver):
-		super().__init__()
-		self.driver = driver
-
+class RecognizerListenerBase:
 	def onBeginningOfSpeech(self):
-		"""
-		if self.on_start:
-			self.on_start()
-		"""
 		print('onBeginningOfSpeech()')
 
 	def onPartialResults(self, partialResults):
