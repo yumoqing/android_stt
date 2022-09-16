@@ -2,13 +2,8 @@ import time
 from jnius import autoclass
 import android
 from android.permissions import request_permissions, Permission
-
 request_permissions([Permission.RECORD_AUDIO])
-
 Bundle = autoclass('android.os.Bundle')
-# RL = autoclass('android.speech.RecognitionListener')
-
-# rl = RL()
 
 class RecognizerListenerBase:
 	def onBeginningOfSpeech(self):
