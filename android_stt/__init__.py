@@ -4,6 +4,7 @@ import android
 from android.permissions import request_permissions, Permission
 request_permissions([Permission.RECORD_AUDIO])
 Bundle = autoclass('android.os.Bundle')
+PA = autoclass('org.kivy.android.PythonActivity')
 
 class RecognizerListenerBase:
 	def onBeginningOfSpeech(self):
@@ -42,7 +43,6 @@ class AndroidNativeSTT(object):
 	"""
 	def __init__(self):
 		SR = autoclass('android.speech.SpeechRecognizer')
-		PA = autoclass('org.kivy.android.PythonActivity')
 		self.context = PA.mActivity
 		if not SR.isRecognitionAvailable(self.context):
 			raise Exception('Recognition not available')
@@ -61,6 +61,7 @@ class AndroidNativeSTT(object):
 			return
 		Intent = autoclass('android.speech.RecognizerIntent')
 		intent = Intent(Intent.ACTION_RECOGNIZE_SPEECH)
+		intent.putExtra(Intent.EXTRA_LANGUAGE, "en-US");
 		intent.putExtra(Intent.EXTRA_LANGUAGE_MODEL, \
 						Intent.LANGUAGE_MODEL_FREE_FORM)
 		self._stt.startListener(intent)
