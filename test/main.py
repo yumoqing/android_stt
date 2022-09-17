@@ -27,7 +27,7 @@ class SttWideget(RecognizerListenerBase, BoxLayout):
 		self.stt = None
 		if platform == 'android':
 			self.stt = AndroidNativeSTT()
-			self.tts.setListener(self)
+			self.stt.setListener(self)
 		print(f'Speech To Text test version={__version__}')
 
 	def toggle_action(self, *args):
