@@ -50,12 +50,7 @@ class AndroidNativeSTT(object):
 			raise Exception('Recognition not available')
 		self._stt = None
 		self._stt = SR.createSpeechRecognizer(self.context)
-		"""
-		if SR.isOnDeviceRecognitionAvailable(self.context):
-			self._stt = SR.createOnDeviceSpeechRecognizer(self.context)
-		else:
-			self._stt = SR.createSpeechRecognizer(self.context)
-		"""
+		print('self._stt=', self._stt)
 		self.listener = None
 
 	def setListener(self, listener):

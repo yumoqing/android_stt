@@ -1,3 +1,4 @@
+import time
 from kivyblocks.setconfig import config_set
 from kivy.app import App
 from kivy.utils import platform
@@ -27,6 +28,7 @@ class SttWideget(RecognizerListenerBase, BoxLayout):
 		self.stt = None
 		if platform == 'android':
 			self.stt = AndroidNativeSTT()
+			time.sleep(1)
 			self.stt.setListener(self)
 		print(f'Speech To Text test version={__version__}')
 
