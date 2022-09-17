@@ -1,6 +1,7 @@
 import time
 from jnius import autoclass
 import android
+from kivy.clock import mainthread
 from android.permissions import request_permissions, Permission
 request_permissions([Permission.RECORD_AUDIO])
 Bundle = autoclass('android.os.Bundle')
@@ -41,11 +42,13 @@ class AndroidNativeSTT(object):
 	....
 	tts.stopListening()
 	"""
+	@mainthread
 	def __init__(self):
 		SR = autoclass('android.speech.SpeechRecognizer')
 		self.context = PA.mActivity
 		if not SR.isRecognitionAvailable(self.context):
 			raise Exception('Recognition not available')
+		self._stt = None
 		self._stt = SR.createSpeechRecognizer(self.context)
 		"""
 		if SR.isOnDeviceRecognitionAvailable(self.context):
@@ -71,7 +74,6 @@ class AndroidNativeSTT(object):
 
 	def stopListener(self):
 		self._stt.stopListening()
-
 
 	def cancel(self):
 		self._stt.cancel()
