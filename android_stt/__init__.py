@@ -46,10 +46,13 @@ class AndroidNativeSTT(object):
 		self.context = PA.mActivity
 		if not SR.isRecognitionAvailable(self.context):
 			raise Exception('Recognition not available')
+		self._stt = SR.createSpeechRecognizer(self.context)
+		"""
 		if SR.isOnDeviceRecognitionAvailable(self.context):
 			self._stt = SR.createOnDeviceSpeechRecognizer(self.context)
 		else:
 			self._stt = SR.createSpeechRecognizer(self.context)
+		"""
 		self.listener = None
 
 	def setListener(self, listener):
@@ -74,5 +77,6 @@ class AndroidNativeSTT(object):
 		self._stt.cancel()
 
 	def __del__(self):
-		self._stt.destroy()
+		if self._stt:
+			self._stt.destroy()
 
